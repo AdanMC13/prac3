@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Consulta Exprés Legal</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Animate.css CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+</head>
+<body class="bg-gray-100 min-h-screen flex flex-col items-center justify-center p-6">
+  <div class="bg-white shadow-2xl rounded-2xl p-6 w-full max-w-md animate__animated animate__fadeIn">
+    
+    <!-- LOGO ESTRATEGIA LEGAL -->
+    <div class="flex justify-center mb-4">
+      <img src="estrategia_logo.png" alt="Logo Estrategia Legal Abogados" class="w-28 h-auto object-contain" />
+    </div>
+
+    <h1 class="text-2xl font-bold text-center text-gray-800 mb-4">Consulta Exprés Legal</h1>
+    <p class="text-center text-sm text-gray-600 mb-6">Describe tu caso y recibe una primera orientación profesional.</p>
+
+    <!-- Área Legal -->
+    <label class="block font-semibold mb-1">⚖️ Área Legal</label>
+    <select id="area" class="w-full mb-4 p-2 border rounded">
+      <option>Familiar</option>
+      <option>Civil</option>
+      <option>Inmobiliario</option>
+      <option>Administrativo</option>
+      <option>Otro</option>
+    </select>
+
+    <!-- Descripción -->
+    <label class="block font-semibold mb-1">📝 Describe tu situación</label>
+    <textarea id="caso" class="w-full mb-4 p-2 border rounded" rows="4" placeholder="Escribe aquí tu problema..."></textarea>
+
+    <!-- Nombre -->
+    <label class="block font-semibold mb-1">👤 Tu nombre</label>
+    <input type="text" id="nombre" class="w-full mb-4 p-2 border rounded" placeholder="Nombre completo"/>
+
+    <!-- Teléfono -->
+    <label class="block font-semibold mb-1">📱 Teléfono</label>
+    <input type="tel" id="telefono" class="w-full mb-4 p-2 border rounded" placeholder="Ej. 5523123456"/>
+
+    <!-- Correo -->
+    <label class="block font-semibold mb-1">📧 Correo electrónico</label>
+    <input type="email" id="correo" class="w-full mb-4 p-2 border rounded" placeholder="ejemplo@mail.com"/>
+
+    <!-- Botones -->
+    <button onclick="generarResumen()" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 w-full rounded shadow mb-3">Enviar Consulta</button>
+
+    <a id="whatsappLink" href="#" target="_blank" class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 w-full rounded text-center shadow block">📲 Enviar por WhatsApp</a>
+
+    <!-- Resultado -->
+    <div id="resultado" class="mt-6 text-sm text-gray-700"></div>
+
+    <!-- PIE DE PÁGINA -->
+    <div class="mt-8 text-center">
+      <p class="text-xs text-gray-400 mb-2">Especialistas en derecho patrimonial e inmobiliario</p>
+      <img src="PORTADA.png" alt="Logo Patrimonium" class="w-24 mx-auto" />
+    </div>
+  </div>
+
+  <script>
+    function generarResumen() {
+      const area = document.getElementById("area").value;
+      const caso = document.getElementById("caso").value;
+      const nombre = document.getElementById("nombre").value;
+      const telefono = document.getElementById("telefono").value;
+      const correo = document.getElementById("correo").value;
+
+      const resumen = `
+Área legal: ${area}
+Nombre: ${nombre}
+Teléfono: ${telefono}
+Correo: ${correo}
+Caso: ${caso}
+      `;
+
+      document.getElementById("resultado").innerHTML = `
+        <div class="animate__animated animate__fadeInUp">
+          <h2 class="text-lg font-semibold mb-2">Resumen de tu Consulta:</h2>
+          <pre class="whitespace-pre-wrap">${resumen}</pre>
+        </div>
+      `;
+
+      const numeroWhatsApp = "525531320188"; // Cambiar por tu número real
+      const mensajeWA = encodeURIComponent("Hola, deseo orientación legal:\n\n" + resumen);
+      document.getElementById("whatsappLink").href = `https://wa.me/${numeroWhatsApp}?text=${mensajeWA}`;
+    }
+  </script>
+</body>
+</html>
+
